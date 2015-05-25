@@ -1,9 +1,12 @@
 
 require 'pry'
 class ItemsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:some_action_without_auth]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
+
+
 
   def index
    
@@ -25,7 +28,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-   #binding.pry
+  binding.pry
     @item = Item.new(item_params)
     @item.user_id = current_user.email
     @item.save

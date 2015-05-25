@@ -1,13 +1,15 @@
 class CategoriesController < ApplicationController
+  before_filter :authenticate_user!, :except => [:some_action_without_auth]
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
+  if current_user.admin==true
 
   def index
     @categories = Category.all
     respond_with(@categories)
   end
-
+end
   def show
     respond_with(@category)
   end
