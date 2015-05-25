@@ -1,0 +1,36 @@
+<h1>Listing items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+    
+      <tr>
+      <td><b>Item_Name</b> <%= item.name %></td><br>
+      </tr>
+      <tr>
+        <td><b>Price</b> <%= item.price %></td><br>
+      </tr>
+      <tr>
+        <td><b>Email</b> <%= item.user_id %></td><br>
+      </tr>
+    
+      <% item.categories.all.each do |category| %>
+      <tr>
+      <td><b>Category</b> <%= category.name %></td><br>
+      </tr>
+      
+      <% end %>
+    <% end %>
+    
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Item', new_item_path %>
